@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 
-export interface IHeader {
+export interface ICart {
   cartCount: number
-  setShowSidebar: Dispatch<SetStateAction<boolean>>
+  setCartCount: Dispatch<SetStateAction<number>>
   setShowCart: Dispatch<SetStateAction<boolean>>
 }
