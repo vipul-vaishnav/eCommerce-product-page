@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className="bg-secondary text-base font-normal font-default w-full min-h-screen overflow-x-hidden text-primary relative">
-      <main className="container mx-auto px-6 sm:px-0">
+      <main className="container mx-auto px-6 sm:px-0 h-screen overflow-hidden">
         <Header setShowSidebar={setShowSidebar} />
         <Main />
       </main>
