@@ -61,7 +61,13 @@ const Main = () => {
             <section className="w-48 border-l border-l-primary pl-6 py-6">
                 <section className="flex flex-col gap-6">
                     {ThumbnailImageData.map((item, idx) => {
-                        return <div onClick={() => setSelected(item.thumbnailNumber)} className="w-full h-auto aspect-square max-w-[128px] mx-auto cursor-pointer" key={idx}>
+                        return <div onClick={() => setSelected(item.thumbnailNumber)} className="w-full h-auto aspect-square max-w-[128px] mx-auto cursor-pointer relative" key={idx}>
+                            {selected === item.thumbnailNumber && <div className="absolute top-0 left-0 w-full h-full bg-primary bg-opacity-50 text-secondary grid place-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-12 h-12">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+
+                            </div>}
                             <img src={item.source} alt="image" />
                         </div>
                     })}
