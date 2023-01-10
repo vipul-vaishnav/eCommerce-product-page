@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { ThumbnailImageData } from '../data/ThumbnailImageData'
 import { ProductImageData } from '../data/ProductImageData'
+import toast from './../../node_modules/react-hot-toast/src/index';
 
 const Main = () => {
     const [selected, setSelected] = useState<number>(1)
 
     const SOURCE = ProductImageData.find(item => item.imageNumber === selected)
 
+    const handleAddToCart = () => {
+        toast.success("Product added successfully!")
+    }
+
     return (
         <main className="flex justify-start h-full border-t border-primary">
-            <section className="flex-1 pr-6 py-6 grid place-content-center mb-28">
+            <section className="flex-1 pr-6 py-6 grid place-content-center h-[calc(100%-78px)]">
                 <section className="flex items-center justify-center gap-6">
                     <div className="w-full">
                         <h2 className="font-bold uppercase tracking-widest mb-4">Sneaker Company</h2>
@@ -35,11 +40,10 @@ const Main = () => {
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
-
                                 </button>
                             </div>
                             <div>
-                                <button className="flex items-center border-2 border-primary gap-4 justify-center bg-primary text-secondary px-6 py-3 hover:shadow-lg transition-all duration-300">
+                                <button onClick={handleAddToCart} className="flex items-center border-2 border-primary gap-4 justify-center bg-primary text-secondary px-6 py-3 hover:shadow-lg transition-all duration-300">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                                     </svg>
@@ -58,7 +62,7 @@ const Main = () => {
                     </div>
                 </section>
             </section>
-            <section className="w-48 border-l border-l-primary pl-6 py-6">
+            <section className="w-48 border-l border-l-primary pl-6 py-6 grid place-content-center h-[calc(100%-78px)]">
                 <section className="flex flex-col gap-6">
                     {ThumbnailImageData.map((item, idx) => {
                         return <div onClick={() => setSelected(item.thumbnailNumber)} className="w-full h-auto aspect-square max-w-[128px] mx-auto cursor-pointer relative" key={idx}>
