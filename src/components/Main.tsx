@@ -1,15 +1,48 @@
 import React, { useState } from 'react'
 import { ThumbnailImageData } from '../data/ThumbnailImageData'
 import { ProductImageData } from '../data/ProductImageData'
-import toast from './../../node_modules/react-hot-toast/src/index';
+import { toast } from "react-hot-toast"
 
 const Main = () => {
     const [selected, setSelected] = useState<number>(1)
+    const [count, setCount] = useState<number>(0)
 
     const SOURCE = ProductImageData.find(item => item.imageNumber === selected)
 
     const handleAddToCart = () => {
-        toast.success("Product added successfully!")
+        console.log("ajfa")
+        toast.success("Product added successfully!", {
+            style: {
+                backgroundColor: "#03210b",
+                color: "#fff9db"
+            }
+        })
+    }
+
+    const increaseCount = () => {
+        if (count !== 10) {
+            setCount(prev => prev + 1)
+        } else {
+            toast.success("Max 10 items can be added", {
+                style: {
+                    backgroundColor: "#03210b",
+                    color: "#fff9db"
+                }
+            })
+        }
+    }
+
+    const decreaseCount = () => {
+        if (count !== 0) {
+            setCount(prev => prev - 1)
+        } else {
+            toast.success("Cannot decrease count further", {
+                style: {
+                    backgroundColor: "#03210b",
+                    color: "#fff9db"
+                }
+            })
+        }
     }
 
     return (
@@ -29,14 +62,14 @@ const Main = () => {
                         <h6 className="line-through mb-6">$250.00</h6>
                         <div className="flex items-center justify-start gap-6">
                             <div className="border-2 border-primary py-3 flex items-center justify-between gap-4 px-4">
-                                <button>
+                                <button onClick={decreaseCount}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
                                     </svg>
 
                                 </button>
-                                <p>0</p>
-                                <button>
+                                <p>{count}</p>
+                                <button onClick={increaseCount}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
