@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { ThumbnailImageData } from '../data/ThumbnailImageData'
+import { ProductImageData } from '../data/ProductImageData'
 
 const Main = () => {
+    const [selected, setSelected] = useState<number>(1)
+
+    const SOURCE = ProductImageData.find(item => item.imageNumber === selected)
+
     return (
         <main className="flex justify-start h-full border-t border-primary">
-            <section className="flex-1 pr-6 py-6">
-                <section className="flex items-center justify-center">
+            <section className="flex-1 pr-6 py-6 grid place-content-center mb-28">
+                <section className="flex items-center justify-center gap-6">
                     <div className="w-full">
                         <h2 className="font-bold uppercase tracking-widest mb-4">Sneaker Company</h2>
                         <h1 className="text-5xl mb-4">Fall Limited Edition Sneakers</h1>
@@ -45,10 +51,21 @@ const Main = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full"></div>
+                    <div className="w-full">
+                        <div className="w-full max-w-[396px] h-auto aspect-square cursor-pointer mx-auto">
+                            <img src={SOURCE?.source} alt="image" />
+                        </div>
+                    </div>
                 </section>
             </section>
-            <section className="w-48 overflow-auto border-l border-l-primary pl-6 py-6">
+            <section className="w-48 border-l border-l-primary pl-6 py-6">
+                <section className="flex flex-col gap-6">
+                    {ThumbnailImageData.map((item, idx) => {
+                        return <div onClick={() => setSelected(item.thumbnailNumber)} className="w-full h-auto aspect-square max-w-[128px] mx-auto cursor-pointer" key={idx}>
+                            <img src={item.source} alt="image" />
+                        </div>
+                    })}
+                </section>
             </section>
         </main>
     )
