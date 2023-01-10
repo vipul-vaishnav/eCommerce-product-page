@@ -1,22 +1,48 @@
-import React, { useState } from 'react'
+import React, { FC, ReactElement, useState } from 'react'
 import { ThumbnailImageData } from '../data/ThumbnailImageData'
 import { ProductImageData } from '../data/ProductImageData'
 import { toast } from "react-hot-toast"
+import { IMain } from './interfaces/IMain'
 
-const Main = () => {
+const Main: FC<IMain> = (props): ReactElement => {
+    const { cartCount, setCartCount } = props
     const [selected, setSelected] = useState<number>(1)
     const [count, setCount] = useState<number>(0)
 
     const SOURCE = ProductImageData.find(item => item.imageNumber === selected)
 
     const handleAddToCart = () => {
-        console.log("ajfa")
-        toast.success("Product added successfully!", {
-            style: {
-                backgroundColor: "#03210b",
-                color: "#fff9db"
+        if (cartCount === 10) {
+            toast.success("Max quantity allowed is 10", {
+                style: {
+                    backgroundColor: "#03210b",
+                    color: "#fff9db"
+                }
+            })
+            return
+        } else if (cartCount + count > 10) {
+            toast.success("Max quantity allowed is 10", {
+                style: {
+                    backgroundColor: "#03210b",
+                    color: "#fff9db"
+                }
+            })
+            return
+        } else {
+            if (count === 0) {
+                setCartCount(prev => prev + 1)
+            } else {
+                setCartCount(prev => prev + count)
+                setCount(0)
             }
-        })
+
+            toast.success("Product added successfully!", {
+                style: {
+                    backgroundColor: "#03210b",
+                    color: "#fff9db"
+                }
+            })
+        }
     }
 
     const increaseCount = () => {

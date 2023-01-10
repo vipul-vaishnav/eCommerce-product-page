@@ -15,7 +15,7 @@ const App = () => {
       <div className="bg-secondary text-base font-normal font-default w-full min-h-screen overflow-x-hidden text-primary relative">
         <main className="max-w-7xl mx-auto px-6 h-screen overflow-hidden">
           <Header setShowSidebar={setShowSidebar} cartCount={cartCount} />
-          <Main />
+          <Main cartCount={cartCount} setCartCount={setCartCount} />
         </main>
         {showSidebar && <>
           <Sidebar setShowSidebar={setShowSidebar} />
