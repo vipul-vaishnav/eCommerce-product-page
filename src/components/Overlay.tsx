@@ -3,13 +3,15 @@ import { IOverlay } from './interfaces/IOverlay'
 import { motion } from 'framer-motion';
 
 const Overlay: FC<IOverlay> = (props): ReactElement => {
-    const { setShowSidebar, setShowCart, showSidebar, showCart } = props
+    const { setShowSidebar, setShowCart, showSidebar, showCart, showSlider, setShowSlider } = props
 
     const handleOverlayClick = () => {
         if (showSidebar) {
             setShowSidebar(false)
         } else if (showCart) {
             setShowCart(false)
+        } else if (showSlider) {
+            setShowSlider(false)
         }
     }
 

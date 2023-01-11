@@ -5,8 +5,7 @@ import { toast } from "react-hot-toast"
 import { IMain } from './interfaces/IMain'
 
 const Main: FC<IMain> = (props): ReactElement => {
-    const { cartCount, setCartCount } = props
-    const [selected, setSelected] = useState<number>(1)
+    const { cartCount, setCartCount, selected, setSelected, setShowSlider } = props
     const [count, setCount] = useState<number>(0)
 
     const SOURCE = ProductImageData.find(item => item.imageNumber === selected)
@@ -115,7 +114,7 @@ const Main: FC<IMain> = (props): ReactElement => {
                         </div>
                     </div>
                     <div className="w-full">
-                        <div className="w-full max-w-[396px] h-auto aspect-square cursor-pointer mx-auto">
+                        <div onClick={() => setShowSlider(true)} className="w-full max-w-[396px] h-auto aspect-square cursor-pointer mx-auto">
                             <img src={SOURCE?.source} alt="image" />
                         </div>
                     </div>
