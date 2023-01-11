@@ -15,7 +15,7 @@ const App = () => {
     <>
       <Toaster />
       <div className="bg-secondary text-base font-normal font-default w-full min-h-screen overflow-x-hidden text-primary relative">
-        <main className="max-w-7xl mx-auto px-6 h-screen overflow-hidden">
+        <main className="max-w-7xl mx-auto px-6 h-screen overflow-auto sm:overflow-hidden">
           <Header setShowSidebar={setShowSidebar} cartCount={cartCount} setShowCart={setShowCart} />
           <Main cartCount={cartCount} setCartCount={setCartCount} />
         </main>
